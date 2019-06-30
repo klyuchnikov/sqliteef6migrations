@@ -91,8 +91,10 @@ namespace System.Data.SQLite.EF6.Migrations
                 ;// nothing to generate for identity
             else if (isIdentity && sqliteTypeName == "guid")
                 AppendSql(" default GenGUID()");
+            else if (sqliteTypeName == "bit")
+                AppendSql($" DEFAULT(0)");
             else if (isIdentity)
-               AppendSql(" constraint primary key autoincrement");
+                AppendSql(" constraint primary key autoincrement");
         }
 
         /// <summary>
